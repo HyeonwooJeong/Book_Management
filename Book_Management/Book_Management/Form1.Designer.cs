@@ -571,7 +571,7 @@
             // 
             // btnConfirmNaver
             // 
-            this.btnConfirmNaver.Location = new System.Drawing.Point(360, 24);
+            this.btnConfirmNaver.Location = new System.Drawing.Point(347, 23);
             this.btnConfirmNaver.Name = "btnConfirmNaver";
             this.btnConfirmNaver.Size = new System.Drawing.Size(93, 25);
             this.btnConfirmNaver.TabIndex = 3;
@@ -581,7 +581,7 @@
             // 
             // txtSearchNaver
             // 
-            this.txtSearchNaver.Location = new System.Drawing.Point(86, 24);
+            this.txtSearchNaver.Location = new System.Drawing.Point(77, 24);
             this.txtSearchNaver.Name = "txtSearchNaver";
             this.txtSearchNaver.Size = new System.Drawing.Size(258, 25);
             this.txtSearchNaver.TabIndex = 1;

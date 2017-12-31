@@ -570,6 +570,7 @@ namespace Book_Management
 
         private void btnConfirmNaver_Click(object sender, EventArgs e)
         {
+            NavertxtClear();
             string xmlNaverResult = "";
 
             string query = txtSearchNaver.Text; // 검색할 문자열
@@ -608,11 +609,25 @@ namespace Book_Management
                     });
                 }
                 this.gvBookViewNaver.DataSource = Naverlist;
+                this.gvBookViewNaver.Columns[8].Visible = false;
             }
             else
             {
                 Console.WriteLine("Error 발생=" + status);
             }
+        }
+
+        private void NavertxtClear()
+        {
+            this.txtNameNaver.Text = null;
+            this.txtAuthorNaver.Text = null;
+            this.txtPriceNaver.Text = null;
+            this.txtDiscountNaver.Text = null;
+            this.txtPublisherNaver.Text = null;
+            this.txtPubdateNaver.Text = null;
+            this.txtIsbnNaver.Text = null;
+            this.txtDescriptionNaver.Text = null;
+            this.picBookNaver.Image = null;
         }
 
         private void gvBookViewNaver_Click(object sender, EventArgs e)
