@@ -44,7 +44,7 @@ namespace Book_Management
         }
 
         private string pubdate;
-        public string MyProperty
+        public string Pubdate
         {
             get { return pubdate; }
             set { pubdate = value; }

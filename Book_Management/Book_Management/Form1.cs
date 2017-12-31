@@ -19,6 +19,7 @@ namespace Book_Management
     {
         string imgFileName;
         List<Books> list = new List<Books>();
+        List<BooksNaver> Naverlist = new List<BooksNaver>();
 
         public Form1()
         {
@@ -569,6 +570,8 @@ namespace Book_Management
 
         private void btnConfirmNaver_Click(object sender, EventArgs e)
         {
+            string xmlNaverResult = "";
+
             string query = txtSearchNaver.Text; // 검색할 문자열
             string url = "https://openapi.naver.com/v1/search/book.xml?query=" + query; // 결과가 JSON 포맷
             // string url = "https://openapi.naver.com/v1/search/blog.xml?query=" + query;  // 결과가 XML 포맷
@@ -579,10 +582,31 @@ namespace Book_Management
             string status = response.StatusCode.ToString();
             if (status == "OK")
             {
+                Naverlist.Clear();
                 Stream stream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(stream, Encoding.UTF8);
                 string text = reader.ReadToEnd();
-                txtResult.Text += text;
+                xmlNaverResult = text;
+
+                XmlDocument xml = new XmlDocument(); // XmlDocument 생성
+                xml.LoadXml(xmlNaverResult);
+
+                XmlNodeList xnList = xml.GetElementsByTagName("item"); //접근할 노드
+                foreach (XmlNode xn in xnList)
+                {
+                    Naverlist.Add(new BooksNaver()
+                    {
+                        Title = xn["title"].InnerText,
+                        Author = xn["author"].InnerText,
+                        Price = xn["price"].InnerText,
+                        Discount = xn["discount"].InnerText,
+                        Publisher = xn["publisher"].InnerText,
+                        Pubdate = xn["pubdate"].InnerText,
+                        Isbn = xn["isbn"].InnerText,
+                        Description = xn["description"].InnerText
+                    });
+                }
+                this.gvBookViewNaver.DataSource = Naverlist;
             }
             else
             {

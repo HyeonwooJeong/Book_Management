@@ -59,10 +59,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.label8 = new System.Windows.Forms.Label();
-            this.txtSearchNaver = new System.Windows.Forms.TextBox();
-            this.txtResult = new System.Windows.Forms.TextBox();
             this.btnConfirmNaver = new System.Windows.Forms.Button();
+            this.txtSearchNaver = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.gvBookViewNaver = new System.Windows.Forms.DataGridView();
             ((System.ComponentModel.ISupportInitialize)(this.picBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBookView)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -71,6 +71,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBookViewNaver)).BeginInit();
             this.SuspendLayout();
             // 
             // picBook
@@ -430,8 +431,8 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.gvBookViewNaver);
             this.tabPage2.Controls.Add(this.btnConfirmNaver);
-            this.tabPage2.Controls.Add(this.txtResult);
             this.tabPage2.Controls.Add(this.txtSearchNaver);
             this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -440,6 +441,23 @@
             this.tabPage2.Size = new System.Drawing.Size(1100, 668);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "네이버 책 검색";
+            // 
+            // btnConfirmNaver
+            // 
+            this.btnConfirmNaver.Location = new System.Drawing.Point(366, 15);
+            this.btnConfirmNaver.Name = "btnConfirmNaver";
+            this.btnConfirmNaver.Size = new System.Drawing.Size(93, 25);
+            this.btnConfirmNaver.TabIndex = 3;
+            this.btnConfirmNaver.Text = "검색";
+            this.btnConfirmNaver.UseVisualStyleBackColor = true;
+            this.btnConfirmNaver.Click += new System.EventHandler(this.btnConfirmNaver_Click);
+            // 
+            // txtSearchNaver
+            // 
+            this.txtSearchNaver.Location = new System.Drawing.Point(92, 15);
+            this.txtSearchNaver.Name = "txtSearchNaver";
+            this.txtSearchNaver.Size = new System.Drawing.Size(258, 25);
+            this.txtSearchNaver.TabIndex = 1;
             // 
             // label8
             // 
@@ -451,30 +469,14 @@
             this.label8.TabIndex = 0;
             this.label8.Text = "검색어";
             // 
-            // txtSearchNaver
+            // gvBookViewNaver
             // 
-            this.txtSearchNaver.Location = new System.Drawing.Point(92, 15);
-            this.txtSearchNaver.Name = "txtSearchNaver";
-            this.txtSearchNaver.Size = new System.Drawing.Size(258, 25);
-            this.txtSearchNaver.TabIndex = 1;
-            // 
-            // txtResult
-            // 
-            this.txtResult.Location = new System.Drawing.Point(23, 59);
-            this.txtResult.Multiline = true;
-            this.txtResult.Name = "txtResult";
-            this.txtResult.Size = new System.Drawing.Size(1071, 597);
-            this.txtResult.TabIndex = 2;
-            // 
-            // btnConfirmNaver
-            // 
-            this.btnConfirmNaver.Location = new System.Drawing.Point(366, 15);
-            this.btnConfirmNaver.Name = "btnConfirmNaver";
-            this.btnConfirmNaver.Size = new System.Drawing.Size(93, 25);
-            this.btnConfirmNaver.TabIndex = 3;
-            this.btnConfirmNaver.Text = "검색";
-            this.btnConfirmNaver.UseVisualStyleBackColor = true;
-            this.btnConfirmNaver.Click += new System.EventHandler(this.btnConfirmNaver_Click);
+            this.gvBookViewNaver.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvBookViewNaver.Location = new System.Drawing.Point(23, 58);
+            this.gvBookViewNaver.Name = "gvBookViewNaver";
+            this.gvBookViewNaver.RowTemplate.Height = 27;
+            this.gvBookViewNaver.Size = new System.Drawing.Size(1057, 290);
+            this.gvBookViewNaver.TabIndex = 4;
             // 
             // Form1
             // 
@@ -497,6 +499,7 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gvBookViewNaver)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -535,9 +538,9 @@
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.Button btnConfirmNaver;
-        private System.Windows.Forms.TextBox txtResult;
         private System.Windows.Forms.TextBox txtSearchNaver;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridView gvBookViewNaver;
     }
 }
 
