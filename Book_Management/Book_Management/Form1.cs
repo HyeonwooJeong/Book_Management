@@ -201,10 +201,10 @@ namespace Book_Management
         /// <param name="e"></param>
         private void Form1_Load(object sender, EventArgs e)
         {
-            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
-            //{
-            //    listUpdate();
-            //}
+            using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
+            {
+                listUpdate();
+            }
         }
 
         /// <summary>
@@ -311,39 +311,6 @@ namespace Book_Management
                     }
                 }
             }
-            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
-            //{
-            //    con.Open();
-            //    string query = "select * from dbo.Books where name like N'%" + findName + "%'";
-            //    using (var cmd = new SqlCommand(query, con))
-            //    {
-            //        var sdr = cmd.ExecuteReader();
-            //        if (!sdr.HasRows)
-            //        {
-            //            MessageBox.Show("친구가 없다!");
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            while (sdr.Read())
-            //            {
-            //                list.Add(new Books()
-            //                {
-            //                    Isbn = sdr["Isbn"].ToString(),
-            //                    Name = sdr["Name"].ToString(),
-            //                    Author = sdr["Author"].ToString(),
-            //                    Price = sdr["Price"].ToString(),
-            //                    Summary = sdr["Summary"].ToString(),
-            //                    Category = sdr["Category"].ToString(),
-            //                });
-            //            }
-
-            //            this.gvBookView.DataSource = list;
-            //            sdr.Close();
-            //            // cmd는 using이 끝나면 자동으로 닫는다.
-            //        }
-            //    }
-            //}
         }
 
         /// <summary>
