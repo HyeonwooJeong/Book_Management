@@ -603,7 +603,8 @@ namespace Book_Management
                         Publisher = xn["publisher"].InnerText,
                         Pubdate = xn["pubdate"].InnerText,
                         Isbn = xn["isbn"].InnerText,
-                        Description = xn["description"].InnerText
+                        Description = xn["description"].InnerText,
+                        Image = xn["image"].InnerText
                     });
                 }
                 this.gvBookViewNaver.DataSource = Naverlist;
@@ -612,6 +613,19 @@ namespace Book_Management
             {
                 Console.WriteLine("Error 발생=" + status);
             }
+        }
+
+        private void gvBookViewNaver_Click(object sender, EventArgs e)
+        {
+            this.txtNameNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[0].Value.ToString();
+            this.txtAuthorNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[1].Value.ToString();
+            this.txtPriceNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[2].Value.ToString() + "원";
+            this.txtDiscountNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[3].Value.ToString() + "원";
+            this.txtPublisherNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[4].Value.ToString();
+            this.txtPubdateNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[5].Value.ToString();
+            this.txtIsbnNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[6].Value.ToString();
+            this.txtDescriptionNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[7].Value.ToString();
+            this.picBookNaver.Load(this.gvBookViewNaver.CurrentRow.Cells[8].Value.ToString());
         }
     }
 }

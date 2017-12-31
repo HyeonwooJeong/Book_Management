@@ -59,10 +59,29 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.gvBookViewNaver = new System.Windows.Forms.DataGridView();
             this.btnConfirmNaver = new System.Windows.Forms.Button();
             this.txtSearchNaver = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.gvBookViewNaver = new System.Windows.Forms.DataGridView();
+            this.txtNameNaver = new System.Windows.Forms.TextBox();
+            this.txtAuthorNaver = new System.Windows.Forms.TextBox();
+            this.txtPriceNaver = new System.Windows.Forms.TextBox();
+            this.txtDiscountNaver = new System.Windows.Forms.TextBox();
+            this.txtPublisherNaver = new System.Windows.Forms.TextBox();
+            this.txtPubdateNaver = new System.Windows.Forms.TextBox();
+            this.txtIsbnNaver = new System.Windows.Forms.TextBox();
+            this.txtDescriptionNaver = new System.Windows.Forms.TextBox();
+            this.label17 = new System.Windows.Forms.Label();
+            this.picBookNaver = new System.Windows.Forms.PictureBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
             ((System.ComponentModel.ISupportInitialize)(this.picBook)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.gvBookView)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -72,6 +91,8 @@
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvBookViewNaver)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBookNaver)).BeginInit();
+            this.groupBox4.SuspendLayout();
             this.SuspendLayout();
             // 
             // picBook
@@ -431,10 +452,26 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.Color.Transparent;
+            this.tabPage2.Controls.Add(this.groupBox4);
+            this.tabPage2.Controls.Add(this.picBookNaver);
+            this.tabPage2.Controls.Add(this.label17);
+            this.tabPage2.Controls.Add(this.txtDescriptionNaver);
+            this.tabPage2.Controls.Add(this.txtIsbnNaver);
+            this.tabPage2.Controls.Add(this.txtPubdateNaver);
+            this.tabPage2.Controls.Add(this.txtPublisherNaver);
+            this.tabPage2.Controls.Add(this.txtDiscountNaver);
+            this.tabPage2.Controls.Add(this.txtPriceNaver);
+            this.tabPage2.Controls.Add(this.txtAuthorNaver);
+            this.tabPage2.Controls.Add(this.txtNameNaver);
+            this.tabPage2.Controls.Add(this.label16);
+            this.tabPage2.Controls.Add(this.label15);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.label13);
+            this.tabPage2.Controls.Add(this.label12);
+            this.tabPage2.Controls.Add(this.label11);
+            this.tabPage2.Controls.Add(this.label10);
+            this.tabPage2.Controls.Add(this.label9);
             this.tabPage2.Controls.Add(this.gvBookViewNaver);
-            this.tabPage2.Controls.Add(this.btnConfirmNaver);
-            this.tabPage2.Controls.Add(this.txtSearchNaver);
-            this.tabPage2.Controls.Add(this.label8);
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
@@ -442,9 +479,99 @@
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "네이버 책 검색";
             // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label16.Location = new System.Drawing.Point(497, 131);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(48, 23);
+            this.label16.TabIndex = 12;
+            this.label16.Text = "요약:";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label15.Location = new System.Drawing.Point(497, 85);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(51, 23);
+            this.label15.TabIndex = 11;
+            this.label15.Text = "ISBN:";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label14.Location = new System.Drawing.Point(35, 320);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(71, 23);
+            this.label14.TabIndex = 10;
+            this.label14.Text = "출판일: ";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label13.Location = new System.Drawing.Point(35, 273);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(65, 23);
+            this.label13.TabIndex = 9;
+            this.label13.Text = "출판사:";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label12.Location = new System.Drawing.Point(35, 226);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(82, 23);
+            this.label12.TabIndex = 8;
+            this.label12.Text = "할인가격:";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label11.Location = new System.Drawing.Point(35, 179);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(48, 23);
+            this.label11.TabIndex = 7;
+            this.label11.Text = "가격:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label10.Location = new System.Drawing.Point(35, 132);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(48, 23);
+            this.label10.TabIndex = 6;
+            this.label10.Text = "저자:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label9.Location = new System.Drawing.Point(35, 85);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 23);
+            this.label9.TabIndex = 5;
+            this.label9.Text = "이름:";
+            // 
+            // gvBookViewNaver
+            // 
+            this.gvBookViewNaver.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gvBookViewNaver.Location = new System.Drawing.Point(23, 392);
+            this.gvBookViewNaver.Name = "gvBookViewNaver";
+            this.gvBookViewNaver.RowTemplate.Height = 27;
+            this.gvBookViewNaver.Size = new System.Drawing.Size(1057, 255);
+            this.gvBookViewNaver.TabIndex = 4;
+            this.gvBookViewNaver.Click += new System.EventHandler(this.gvBookViewNaver_Click);
+            // 
             // btnConfirmNaver
             // 
-            this.btnConfirmNaver.Location = new System.Drawing.Point(366, 15);
+            this.btnConfirmNaver.Location = new System.Drawing.Point(360, 24);
             this.btnConfirmNaver.Name = "btnConfirmNaver";
             this.btnConfirmNaver.Size = new System.Drawing.Size(93, 25);
             this.btnConfirmNaver.TabIndex = 3;
@@ -454,7 +581,7 @@
             // 
             // txtSearchNaver
             // 
-            this.txtSearchNaver.Location = new System.Drawing.Point(92, 15);
+            this.txtSearchNaver.Location = new System.Drawing.Point(86, 24);
             this.txtSearchNaver.Name = "txtSearchNaver";
             this.txtSearchNaver.Size = new System.Drawing.Size(258, 25);
             this.txtSearchNaver.TabIndex = 1;
@@ -462,21 +589,99 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("맑은 고딕", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label8.Location = new System.Drawing.Point(18, 12);
+            this.label8.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label8.Location = new System.Drawing.Point(12, 23);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(72, 28);
+            this.label8.Size = new System.Drawing.Size(61, 23);
             this.label8.TabIndex = 0;
             this.label8.Text = "검색어";
             // 
-            // gvBookViewNaver
+            // txtNameNaver
             // 
-            this.gvBookViewNaver.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.gvBookViewNaver.Location = new System.Drawing.Point(23, 58);
-            this.gvBookViewNaver.Name = "gvBookViewNaver";
-            this.gvBookViewNaver.RowTemplate.Height = 27;
-            this.gvBookViewNaver.Size = new System.Drawing.Size(1057, 290);
-            this.gvBookViewNaver.TabIndex = 4;
+            this.txtNameNaver.Location = new System.Drawing.Point(97, 88);
+            this.txtNameNaver.Name = "txtNameNaver";
+            this.txtNameNaver.Size = new System.Drawing.Size(336, 25);
+            this.txtNameNaver.TabIndex = 13;
+            // 
+            // txtAuthorNaver
+            // 
+            this.txtAuthorNaver.Location = new System.Drawing.Point(97, 135);
+            this.txtAuthorNaver.Name = "txtAuthorNaver";
+            this.txtAuthorNaver.Size = new System.Drawing.Size(254, 25);
+            this.txtAuthorNaver.TabIndex = 14;
+            // 
+            // txtPriceNaver
+            // 
+            this.txtPriceNaver.Location = new System.Drawing.Point(97, 182);
+            this.txtPriceNaver.Name = "txtPriceNaver";
+            this.txtPriceNaver.Size = new System.Drawing.Size(138, 25);
+            this.txtPriceNaver.TabIndex = 15;
+            // 
+            // txtDiscountNaver
+            // 
+            this.txtDiscountNaver.Location = new System.Drawing.Point(133, 229);
+            this.txtDiscountNaver.Name = "txtDiscountNaver";
+            this.txtDiscountNaver.Size = new System.Drawing.Size(138, 25);
+            this.txtDiscountNaver.TabIndex = 16;
+            // 
+            // txtPublisherNaver
+            // 
+            this.txtPublisherNaver.Location = new System.Drawing.Point(117, 276);
+            this.txtPublisherNaver.Name = "txtPublisherNaver";
+            this.txtPublisherNaver.Size = new System.Drawing.Size(138, 25);
+            this.txtPublisherNaver.TabIndex = 17;
+            // 
+            // txtPubdateNaver
+            // 
+            this.txtPubdateNaver.Location = new System.Drawing.Point(117, 320);
+            this.txtPubdateNaver.Name = "txtPubdateNaver";
+            this.txtPubdateNaver.Size = new System.Drawing.Size(138, 25);
+            this.txtPubdateNaver.TabIndex = 18;
+            // 
+            // txtIsbnNaver
+            // 
+            this.txtIsbnNaver.Location = new System.Drawing.Point(562, 88);
+            this.txtIsbnNaver.Name = "txtIsbnNaver";
+            this.txtIsbnNaver.Size = new System.Drawing.Size(204, 25);
+            this.txtIsbnNaver.TabIndex = 19;
+            // 
+            // txtDescriptionNaver
+            // 
+            this.txtDescriptionNaver.Location = new System.Drawing.Point(562, 134);
+            this.txtDescriptionNaver.Name = "txtDescriptionNaver";
+            this.txtDescriptionNaver.Size = new System.Drawing.Size(489, 25);
+            this.txtDescriptionNaver.TabIndex = 20;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label17.Location = new System.Drawing.Point(497, 175);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(48, 23);
+            this.label17.TabIndex = 21;
+            this.label17.Text = "사진:";
+            // 
+            // picBookNaver
+            // 
+            this.picBookNaver.Location = new System.Drawing.Point(562, 179);
+            this.picBookNaver.Name = "picBookNaver";
+            this.picBookNaver.Size = new System.Drawing.Size(152, 169);
+            this.picBookNaver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picBookNaver.TabIndex = 22;
+            this.picBookNaver.TabStop = false;
+            // 
+            // groupBox4
+            // 
+            this.groupBox4.Controls.Add(this.btnConfirmNaver);
+            this.groupBox4.Controls.Add(this.txtSearchNaver);
+            this.groupBox4.Controls.Add(this.label8);
+            this.groupBox4.Location = new System.Drawing.Point(23, 9);
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.Size = new System.Drawing.Size(1057, 59);
+            this.groupBox4.TabIndex = 23;
+            this.groupBox4.TabStop = false;
+            this.groupBox4.Text = "검색";
             // 
             // Form1
             // 
@@ -500,6 +705,9 @@
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gvBookViewNaver)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.picBookNaver)).EndInit();
+            this.groupBox4.ResumeLayout(false);
+            this.groupBox4.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -541,6 +749,25 @@
         private System.Windows.Forms.TextBox txtSearchNaver;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.DataGridView gvBookViewNaver;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.TextBox txtDescriptionNaver;
+        private System.Windows.Forms.TextBox txtIsbnNaver;
+        private System.Windows.Forms.TextBox txtPubdateNaver;
+        private System.Windows.Forms.TextBox txtPublisherNaver;
+        private System.Windows.Forms.TextBox txtDiscountNaver;
+        private System.Windows.Forms.TextBox txtPriceNaver;
+        private System.Windows.Forms.TextBox txtAuthorNaver;
+        private System.Windows.Forms.TextBox txtNameNaver;
+        private System.Windows.Forms.PictureBox picBookNaver;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.GroupBox groupBox4;
     }
 }
 

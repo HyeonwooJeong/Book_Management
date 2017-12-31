@@ -64,5 +64,12 @@ namespace Book_Management
             set { description = value; }
         }
 
+        private string image;
+
+        public string Image
+        {
+            get { return image; }
+            set { image = value; }
+        }
     }
 }
