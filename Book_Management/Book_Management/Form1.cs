@@ -272,55 +272,22 @@ namespace Book_Management
             // 한글은 공백을 유의해야한다!!
             string findName = txtSearch.Text;
 
-            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
-            //{
-
-            //    gvBookView.DataSource = null;
-            //    list.Clear();
-
-            //    using (var cmd = new SqlCommand("SearchBook", con))
-            //    {
-            //        cmd.CommandType = CommandType.StoredProcedure;
-
-            //        cmd.Parameters.AddWithValue("@searchName", findName);
-            //        con.Open();
-            //        var sdr = cmd.ExecuteReader();
-
-            //        if (!sdr.HasRows)
-            //        {
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            while (sdr.Read())
-            //            {
-            //                list.Add(new Books()
-            //                {
-            //                    Isbn = sdr["Isbn"].ToString(),
-            //                    Name = sdr["Name"].ToString(),
-            //                    Author = sdr["Author"].ToString(),
-            //                    Price = sdr["Price"].ToString(),
-            //                    Summary = sdr["Summary"].ToString(),
-            //                    Category = sdr["Category"].ToString(),
-            //                });
-            //            }
-
-            //            this.gvBookView.DataSource = list;
-            //            gvBookViewSettings();
-            //            sdr.Close();
-            //        }
-            //    }
-            //}
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
             {
-                con.Open();
-                string query = "select * from dbo.Books where name like N'%" + findName + "%'";
-                using (var cmd = new SqlCommand(query, con))
+
+                gvBookView.DataSource = null;
+                list.Clear();
+
+                using (var cmd = new SqlCommand("SearchBook", con))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@searchName", findName);
+                    con.Open();
                     var sdr = cmd.ExecuteReader();
+
                     if (!sdr.HasRows)
                     {
-                        MessageBox.Show("친구가 없다!");
                         return;
                     }
                     else
@@ -339,11 +306,44 @@ namespace Book_Management
                         }
 
                         this.gvBookView.DataSource = list;
+                        gvBookViewSettings();
                         sdr.Close();
-                        // cmd는 using이 끝나면 자동으로 닫는다.
                     }
                 }
             }
+            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
+            //{
+            //    con.Open();
+            //    string query = "select * from dbo.Books where name like N'%" + findName + "%'";
+            //    using (var cmd = new SqlCommand(query, con))
+            //    {
+            //        var sdr = cmd.ExecuteReader();
+            //        if (!sdr.HasRows)
+            //        {
+            //            MessageBox.Show("친구가 없다!");
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            while (sdr.Read())
+            //            {
+            //                list.Add(new Books()
+            //                {
+            //                    Isbn = sdr["Isbn"].ToString(),
+            //                    Name = sdr["Name"].ToString(),
+            //                    Author = sdr["Author"].ToString(),
+            //                    Price = sdr["Price"].ToString(),
+            //                    Summary = sdr["Summary"].ToString(),
+            //                    Category = sdr["Category"].ToString(),
+            //                });
+            //            }
+
+            //            this.gvBookView.DataSource = list;
+            //            sdr.Close();
+            //            // cmd는 using이 끝나면 자동으로 닫는다.
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>
