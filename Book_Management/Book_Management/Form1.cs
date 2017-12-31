@@ -583,6 +583,7 @@ namespace Book_Management
             string status = response.StatusCode.ToString();
             if (status == "OK")
             {
+                gvBookViewNaver.DataSource = null;
                 Naverlist.Clear();
                 Stream stream = response.GetResponseStream();
                 StreamReader reader = new StreamReader(stream, Encoding.UTF8);
