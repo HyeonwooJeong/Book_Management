@@ -563,6 +563,9 @@ namespace Book_Management
                 XmlNodeList xnList = xml.GetElementsByTagName("item"); //접근할 노드
                 foreach (XmlNode xn in xnList)
                 {
+                    string isbn = xn["isbn"].InnerText;
+                    string[] isbn_array = isbn.Split('\x020');
+                    
                     Naverlist.Add(new BooksNaver()
                     {
                         Title = xn["title"].InnerText,
@@ -571,7 +574,7 @@ namespace Book_Management
                         Discount = xn["discount"].InnerText,
                         Publisher = xn["publisher"].InnerText,
                         Pubdate = xn["pubdate"].InnerText,
-                        Isbn = xn["isbn"].InnerText,
+                        Isbn = isbn_array[1],
                         Description = xn["description"].InnerText,
                         Image = xn["image"].InnerText
                     });
