@@ -9,6 +9,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
@@ -565,17 +566,17 @@ namespace Book_Management
                 {
                     string isbn = xn["isbn"].InnerText;
                     string[] isbn_array = isbn.Split('\x020');
-                    
+
                     Naverlist.Add(new BooksNaver()
                     {
-                        Title = xn["title"].InnerText,
-                        Author = xn["author"].InnerText,
-                        Price = xn["price"].InnerText,
-                        Discount = xn["discount"].InnerText,
-                        Publisher = xn["publisher"].InnerText,
-                        Pubdate = xn["pubdate"].InnerText,
+                        Title = htmlRegex(xn["title"].InnerText),
+                        Author = htmlRegex(xn["author"].InnerText),
+                        Price = htmlRegex(xn["price"].InnerText),
+                        Discount = htmlRegex(xn["discount"].InnerText),
+                        Publisher = htmlRegex(xn["publisher"].InnerText),
+                        Pubdate = htmlRegex(xn["pubdate"].InnerText),
                         Isbn = isbn_array[1],
-                        Description = xn["description"].InnerText,
+                        Description = htmlRegex(xn["description"].InnerText),
                         Image = xn["image"].InnerText
                     });
                 }
@@ -586,6 +587,16 @@ namespace Book_Management
             {
                 Console.WriteLine("Error 발생=" + status);
             }
+        }
+
+        /// <summary>
+        /// html 태그 정규식
+        /// </summary>
+        /// <param name="text"></param>
+        /// <returns></returns>
+        private string htmlRegex(string str)
+        {
+            return Regex.Replace(str, @"[<][a-z|A-Z|/](.|\n)*?[>]", "");
         }
 
         private void NavertxtClear()
