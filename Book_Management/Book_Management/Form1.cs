@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -564,6 +565,29 @@ namespace Book_Management
         private void btnXml_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConfirmNaver_Click(object sender, EventArgs e)
+        {
+            string query = txtSearchNaver.Text; // 검색할 문자열
+            string url = "https://openapi.naver.com/v1/search/book.xml?query=" + query; // 결과가 JSON 포맷
+            // string url = "https://openapi.naver.com/v1/search/blog.xml?query=" + query;  // 결과가 XML 포맷
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Headers.Add("X-Naver-Client-Id", "Yzf9K4gepuEnsT1wzSvE"); // 클라이언트 아이디
+            request.Headers.Add("X-Naver-Client-Secret", "xCyGt9b1vr");       // 클라이언트 시크릿
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string status = response.StatusCode.ToString();
+            if (status == "OK")
+            {
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                string text = reader.ReadToEnd();
+                txtResult.Text += text;
+            }
+            else
+            {
+                Console.WriteLine("Error 발생=" + status);
+            }
         }
     }
 }

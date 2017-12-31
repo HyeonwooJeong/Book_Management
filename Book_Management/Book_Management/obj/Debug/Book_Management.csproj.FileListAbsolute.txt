@@ -34,3 +34,15 @@ F:\1229\Book_Management\Book_Management\obj\Debug\Book_Management.csproj.Generat
 F:\1229\Book_Management\Book_Management\obj\Debug\Book_Management.csproj.CoreCompileInputs.cache
 F:\1229\Book_Management\Book_Management\obj\Debug\Book_Management.exe
 F:\1229\Book_Management\Book_Management\obj\Debug\Book_Management.pdb
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\bin\Debug\Books.mdf
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\bin\Debug\Books_log.ldf
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\bin\Debug\Book_Management.exe.config
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\bin\Debug\Book_Management.exe
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\bin\Debug\Book_Management.pdb
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.csprojResolveAssemblyReference.cache
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.Form1.resources
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.Properties.Resources.resources
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.csproj.GenerateResource.Cache
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.csproj.CoreCompileInputs.cache
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.exe
+C:\Users\정현우\Desktop\Book_Management\Book_Management\Book_Management\obj\Debug\Book_Management.pdb
