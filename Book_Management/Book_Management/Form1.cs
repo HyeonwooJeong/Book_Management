@@ -7,6 +7,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -18,6 +19,7 @@ namespace Book_Management
     {
         string imgFileName;
         List<Books> list = new List<Books>();
+        List<BooksNaver> Naverlist = new List<BooksNaver>();
 
         public Form1()
         {
@@ -270,55 +272,22 @@ namespace Book_Management
             // 한글은 공백을 유의해야한다!!
             string findName = txtSearch.Text;
 
-            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
-            //{
-
-            //    gvBookView.DataSource = null;
-            //    list.Clear();
-
-            //    using (var cmd = new SqlCommand("SearchBook", con))
-            //    {
-            //        cmd.CommandType = CommandType.StoredProcedure;
-
-            //        cmd.Parameters.AddWithValue("@searchName", findName);
-            //        con.Open();
-            //        var sdr = cmd.ExecuteReader();
-
-            //        if (!sdr.HasRows)
-            //        {
-            //            return;
-            //        }
-            //        else
-            //        {
-            //            while (sdr.Read())
-            //            {
-            //                list.Add(new Books()
-            //                {
-            //                    Isbn = sdr["Isbn"].ToString(),
-            //                    Name = sdr["Name"].ToString(),
-            //                    Author = sdr["Author"].ToString(),
-            //                    Price = sdr["Price"].ToString(),
-            //                    Summary = sdr["Summary"].ToString(),
-            //                    Category = sdr["Category"].ToString(),
-            //                });
-            //            }
-
-            //            this.gvBookView.DataSource = list;
-            //            gvBookViewSettings();
-            //            sdr.Close();
-            //        }
-            //    }
-            //}
             using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
             {
-                con.Open();
-                string query = "select * from dbo.Books where name like N'%" + findName + "%'";
-                using (var cmd = new SqlCommand(query, con))
+
+                gvBookView.DataSource = null;
+                list.Clear();
+
+                using (var cmd = new SqlCommand("SearchBook", con))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@searchName", findName);
+                    con.Open();
                     var sdr = cmd.ExecuteReader();
+
                     if (!sdr.HasRows)
                     {
-                        MessageBox.Show("친구가 없다!");
                         return;
                     }
                     else
@@ -337,11 +306,44 @@ namespace Book_Management
                         }
 
                         this.gvBookView.DataSource = list;
+                        gvBookViewSettings();
                         sdr.Close();
-                        // cmd는 using이 끝나면 자동으로 닫는다.
                     }
                 }
             }
+            //using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
+            //{
+            //    con.Open();
+            //    string query = "select * from dbo.Books where name like N'%" + findName + "%'";
+            //    using (var cmd = new SqlCommand(query, con))
+            //    {
+            //        var sdr = cmd.ExecuteReader();
+            //        if (!sdr.HasRows)
+            //        {
+            //            MessageBox.Show("친구가 없다!");
+            //            return;
+            //        }
+            //        else
+            //        {
+            //            while (sdr.Read())
+            //            {
+            //                list.Add(new Books()
+            //                {
+            //                    Isbn = sdr["Isbn"].ToString(),
+            //                    Name = sdr["Name"].ToString(),
+            //                    Author = sdr["Author"].ToString(),
+            //                    Price = sdr["Price"].ToString(),
+            //                    Summary = sdr["Summary"].ToString(),
+            //                    Category = sdr["Category"].ToString(),
+            //                });
+            //            }
+
+            //            this.gvBookView.DataSource = list;
+            //            sdr.Close();
+            //            // cmd는 using이 끝나면 자동으로 닫는다.
+            //        }
+            //    }
+            //}
         }
 
         /// <summary>
@@ -564,6 +566,82 @@ namespace Book_Management
         private void btnXml_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnConfirmNaver_Click(object sender, EventArgs e)
+        {
+            NavertxtClear();
+            string xmlNaverResult = "";
+
+            string query = txtSearchNaver.Text; // 검색할 문자열
+            string url = "https://openapi.naver.com/v1/search/book.xml?query=" + query; // 결과가 JSON 포맷
+            // string url = "https://openapi.naver.com/v1/search/blog.xml?query=" + query;  // 결과가 XML 포맷
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+            request.Headers.Add("X-Naver-Client-Id", "Yzf9K4gepuEnsT1wzSvE"); // 클라이언트 아이디
+            request.Headers.Add("X-Naver-Client-Secret", "xCyGt9b1vr");       // 클라이언트 시크릿
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            string status = response.StatusCode.ToString();
+            if (status == "OK")
+            {
+                gvBookViewNaver.DataSource = null;
+                Naverlist.Clear();
+                Stream stream = response.GetResponseStream();
+                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                string text = reader.ReadToEnd();
+                xmlNaverResult = text;
+
+                XmlDocument xml = new XmlDocument(); // XmlDocument 생성
+                xml.LoadXml(xmlNaverResult);
+
+                XmlNodeList xnList = xml.GetElementsByTagName("item"); //접근할 노드
+                foreach (XmlNode xn in xnList)
+                {
+                    Naverlist.Add(new BooksNaver()
+                    {
+                        Title = xn["title"].InnerText,
+                        Author = xn["author"].InnerText,
+                        Price = xn["price"].InnerText,
+                        Discount = xn["discount"].InnerText,
+                        Publisher = xn["publisher"].InnerText,
+                        Pubdate = xn["pubdate"].InnerText,
+                        Isbn = xn["isbn"].InnerText,
+                        Description = xn["description"].InnerText,
+                        Image = xn["image"].InnerText
+                    });
+                }
+                this.gvBookViewNaver.DataSource = Naverlist;
+                this.gvBookViewNaver.Columns[8].Visible = false;
+            }
+            else
+            {
+                Console.WriteLine("Error 발생=" + status);
+            }
+        }
+
+        private void NavertxtClear()
+        {
+            this.txtNameNaver.Text = null;
+            this.txtAuthorNaver.Text = null;
+            this.txtPriceNaver.Text = null;
+            this.txtDiscountNaver.Text = null;
+            this.txtPublisherNaver.Text = null;
+            this.txtPubdateNaver.Text = null;
+            this.txtIsbnNaver.Text = null;
+            this.txtDescriptionNaver.Text = null;
+            this.picBookNaver.Image = null;
+        }
+
+        private void gvBookViewNaver_Click(object sender, EventArgs e)
+        {
+            this.txtNameNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[0].Value.ToString();
+            this.txtAuthorNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[1].Value.ToString();
+            this.txtPriceNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[2].Value.ToString() + "원";
+            this.txtDiscountNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[3].Value.ToString() + "원";
+            this.txtPublisherNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[4].Value.ToString();
+            this.txtPubdateNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[5].Value.ToString();
+            this.txtIsbnNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[6].Value.ToString();
+            this.txtDescriptionNaver.Text = this.gvBookViewNaver.CurrentRow.Cells[7].Value.ToString();
+            this.picBookNaver.Load(this.gvBookViewNaver.CurrentRow.Cells[8].Value.ToString());
         }
     }
 }
