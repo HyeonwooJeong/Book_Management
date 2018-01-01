@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.CSharp.RuntimeBinder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Configuration;
@@ -8,6 +9,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Net;
+using System.Reflection;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -533,7 +535,37 @@ namespace Book_Management
 
         private void btnXml_Click(object sender, EventArgs e)
         {
+            DialogResult digXmlResult = MessageBox.Show("Xml 파일로 저장 하시겠습니까?","", MessageBoxButtons.YesNo);
+            if (digXmlResult == DialogResult.Yes)
+            {
+                using (var con = new SqlConnection(ConfigurationManager.ConnectionStrings["compactDb"].ConnectionString))
+                {
+                    con.Open();
+                    StringBuilder builder = new StringBuilder("<Books>");
+                    using (var cmd = new SqlCommand("SaveXml", con))
+                    {
+                        SqlDataReader sdr = cmd.ExecuteReader();
+                        while (sdr.Read())
+                        {
+                            builder.Append(sdr.GetString(0));
+                        }
+                        builder.Append("</Books>");
 
+                        FileStream file = new FileStream("books.xml", FileMode.OpenOrCreate);
+
+                        StreamWriter writer = new StreamWriter(file);
+
+                        MessageBox.Show("저장이 완료되었습니다.");
+                        writer.Write(builder.ToString());
+                        writer.Close();
+                        file.Close();
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("저장할 정보가 없습니다.");
+            }
         }
 
         private void btnConfirmNaver_Click(object sender, EventArgs e)
@@ -551,41 +583,48 @@ namespace Book_Management
             string status = response.StatusCode.ToString();
             if (status == "OK")
             {
-                gvBookViewNaver.DataSource = null;
-                Naverlist.Clear();
-                Stream stream = response.GetResponseStream();
-                StreamReader reader = new StreamReader(stream, Encoding.UTF8);
-                string text = reader.ReadToEnd();
-                xmlNaverResult = text;
-
-                XmlDocument xml = new XmlDocument(); // XmlDocument 생성
-                xml.LoadXml(xmlNaverResult);
-
-                XmlNodeList xnList = xml.GetElementsByTagName("item"); //접근할 노드
-                foreach (XmlNode xn in xnList)
+                try
                 {
-                    string isbn = xn["isbn"].InnerText;
-                    string[] isbn_array = isbn.Split('\x020');
+                    gvBookViewNaver.DataSource = null;
+                    Naverlist.Clear();
+                    Stream stream = response.GetResponseStream();
+                    StreamReader reader = new StreamReader(stream, Encoding.UTF8);
+                    string text = reader.ReadToEnd();
+                    xmlNaverResult = text;
 
-                    Naverlist.Add(new BooksNaver()
+                    XmlDocument xml = new XmlDocument(); // XmlDocument 생성
+                    xml.LoadXml(xmlNaverResult);
+
+                    XmlNodeList xnList = xml.GetElementsByTagName("item"); //접근할 노드
+                    foreach (XmlNode xn in xnList)
                     {
-                        Title = htmlRegex(xn["title"].InnerText),
-                        Author = htmlRegex(xn["author"].InnerText),
-                        Price = htmlRegex(xn["price"].InnerText),
-                        Discount = htmlRegex(xn["discount"].InnerText),
-                        Publisher = htmlRegex(xn["publisher"].InnerText),
-                        Pubdate = htmlRegex(xn["pubdate"].InnerText),
-                        Isbn = isbn_array[1],
-                        Description = htmlRegex(xn["description"].InnerText),
-                        Image = xn["image"].InnerText
-                    });
+                        string isbn = xn["isbn"].InnerText;
+                        string[] isbn_array = isbn.Split('\x020');
+
+                        Naverlist.Add(new BooksNaver()
+                        {
+                            Title = htmlRegex(xn["title"].InnerText),
+                            Author = htmlRegex(xn["author"].InnerText),
+                            Price = htmlRegex(xn["price"].InnerText),
+                            Discount = htmlRegex(xn["discount"].InnerText),
+                            Publisher = htmlRegex(xn["publisher"].InnerText),
+                            Pubdate = htmlRegex(xn["pubdate"].InnerText),
+                            Isbn = isbn_array[1],
+                            Description = htmlRegex(xn["description"].InnerText),
+                            Image = xn["image"].InnerText
+                        });
+                    }
+                    this.gvBookViewNaver.DataSource = Naverlist;
+                    this.gvBookViewNaver.Columns[8].Visible = false;
                 }
-                this.gvBookViewNaver.DataSource = Naverlist;
-                this.gvBookViewNaver.Columns[8].Visible = false;
+                catch (Exception)
+                {
+                    MessageBox.Show("검색 결과가 없습니다.");
+                }
             }
             else
             {
-                Console.WriteLine("Error 발생=" + status);
+                //Console.WriteLine("Error 발생=" + status);
             }
         }
 
