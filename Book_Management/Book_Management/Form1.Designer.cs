@@ -520,7 +520,7 @@
             // 
             // picBookNaver
             // 
-            this.picBookNaver.Location = new System.Drawing.Point(562, 179);
+            this.picBookNaver.Location = new System.Drawing.Point(896, 92);
             this.picBookNaver.Name = "picBookNaver";
             this.picBookNaver.Size = new System.Drawing.Size(152, 169);
             this.picBookNaver.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -531,7 +531,7 @@
             // 
             this.label17.AutoSize = true;
             this.label17.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label17.Location = new System.Drawing.Point(497, 175);
+            this.label17.Location = new System.Drawing.Point(831, 88);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(48, 23);
             this.label17.TabIndex = 21;
@@ -539,15 +539,16 @@
             // 
             // txtDescriptionNaver
             // 
-            this.txtDescriptionNaver.Location = new System.Drawing.Point(562, 134);
+            this.txtDescriptionNaver.Location = new System.Drawing.Point(532, 134);
+            this.txtDescriptionNaver.Multiline = true;
             this.txtDescriptionNaver.Name = "txtDescriptionNaver";
             this.txtDescriptionNaver.ReadOnly = true;
-            this.txtDescriptionNaver.Size = new System.Drawing.Size(489, 25);
+            this.txtDescriptionNaver.Size = new System.Drawing.Size(284, 211);
             this.txtDescriptionNaver.TabIndex = 20;
             // 
             // txtIsbnNaver
             // 
-            this.txtIsbnNaver.Location = new System.Drawing.Point(562, 88);
+            this.txtIsbnNaver.Location = new System.Drawing.Point(532, 88);
             this.txtIsbnNaver.Name = "txtIsbnNaver";
             this.txtIsbnNaver.ReadOnly = true;
             this.txtIsbnNaver.Size = new System.Drawing.Size(204, 25);
@@ -605,7 +606,7 @@
             // 
             this.label16.AutoSize = true;
             this.label16.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label16.Location = new System.Drawing.Point(497, 131);
+            this.label16.Location = new System.Drawing.Point(467, 131);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 23);
             this.label16.TabIndex = 12;
@@ -615,7 +616,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.Font = new System.Drawing.Font("맑은 고딕", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label15.Location = new System.Drawing.Point(497, 85);
+            this.label15.Location = new System.Drawing.Point(467, 85);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(51, 23);
             this.label15.TabIndex = 11;

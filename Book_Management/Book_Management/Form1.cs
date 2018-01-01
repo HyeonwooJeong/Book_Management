@@ -616,6 +616,7 @@ namespace Book_Management
                     }
                     this.gvBookViewNaver.DataSource = Naverlist;
                     this.gvBookViewNaver.Columns[8].Visible = false;
+                    gvBookViewNaverSettings();
                 }
                 catch (Exception)
                 {
@@ -626,6 +627,22 @@ namespace Book_Management
             {
                 //Console.WriteLine("Error 발생=" + status);
             }
+        }
+
+        private void gvBookViewNaverSettings()
+        {
+            // 열 이름 설정
+            this.gvBookViewNaver.Columns[0].HeaderText = "책 이름";
+            this.gvBookViewNaver.Columns[1].HeaderText = "저자";
+            this.gvBookViewNaver.Columns[2].HeaderText = "공식가격";
+            this.gvBookViewNaver.Columns[3].HeaderText = "할인가격";
+            this.gvBookViewNaver.Columns[4].HeaderText = "출판사";
+            this.gvBookViewNaver.Columns[5].HeaderText = "출판일";
+            this.gvBookViewNaver.Columns[6].HeaderText = "ISBN";
+            this.gvBookViewNaver.Columns[7].HeaderText = "내용요약";
+
+            // 열 크기 설정
+            this.gvBookViewNaver.Columns[7].Width = 300;
         }
 
         /// <summary>
